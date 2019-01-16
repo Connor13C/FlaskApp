@@ -47,4 +47,4 @@ class Item(Resource):
 class Items(Resource):
     @staticmethod
     def get():
-        return {'items': [item.json() for item in ItemModel.query.all()]}
+        return {'items': [item.json() for item in ItemModel.find_all()]}
