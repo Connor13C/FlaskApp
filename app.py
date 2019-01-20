@@ -8,8 +8,9 @@ from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefre
 from resources.item import Item, Items
 from resources.store import Store, Stores
 from blacklist import BLACKLIST
+from resources.front_page import FrontPage
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -73,6 +74,7 @@ api.add_resource(User, '/user/<int:user_id>')
 api.add_resource(UserLogin, '/login')
 api.add_resource(TokenRefresh, '/refresh')
 api.add_resource(UserLogout, '/logout')
+api.add_resource(FrontPage, '/')
 
 if __name__ == '__main__':
     from db import db
